@@ -1,5 +1,8 @@
-﻿using NAudio.Wave;
+﻿using Microsoft.VisualBasic;
+using NAudio.Wave;
+using ScottPlot.Drawing.Colormaps;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,52 +10,52 @@ using System.Threading.Tasks;
 
 namespace NoiseGenerator
 {
-    public class LoopStream : WaveStream
+    public class LoopStream : ISampleProvider
     {
-        WaveStream sourceStream;
+        private readonly ISampleProvider source;
 
-        public LoopStream(WaveStream sourceStream)
+        public MySampleProvider(ISampleProvider source)
         {
-            this.sourceStream = sourceStream;
-            this.EnableLooping = true;
+            this.source = source;
         }
 
-        public bool EnableLooping;
-
-        public override WaveFormat WaveFormat
+        public int Read(float[] buffer, int offset, int count)
         {
-            get { return sourceStream.WaveFormat; }
+            int samplesRead = source.Read(buffer, offset, count);
+            // TODO: examine and optionally change the contents of buffer
+            return samplesRead;
         }
 
-        public override long Length
+        public WaveFormat WaveFormat
         {
-            get { return sourceStream.Length; }
+            get { return source.WaveFormat; }
         }
 
-        public override long Position
+        /*
+        private void GenerateFunction()
         {
-            get { return sourceStream.Position; }
-            set { sourceStream.Position = value; }
-        }
+            //Generate function with samples
+            var raw = new byte[BUFFER_LENGTH * 2];
 
-        public override int Read(byte[] buffer, int offset, int count)
-        {
-            int totalBytesRead = 0;
-
-            while (totalBytesRead < count)
+            phase += 2 * Math.PI * freq / SAMPLE_RATE;
+            if (phase >= 2 * Math.PI)
+                phase -= 2 * Math.PI;
+            for (int n = 0; n < BUFFER_LENGTH; n++)
             {
-                int bytesRead = sourceStream.Read(buffer, offset + totalBytesRead, count - totalBytesRead);
-                if (bytesRead == 0)
-                {
-                    if (sourceStream.Position == 0 || !EnableLooping)
-                    {
-                        break;
-                    }
-                    sourceStream.Position = 0;
-                }
-                totalBytesRead += bytesRead;
+
+                var sineSample = Math.Sin(Math.PI * 2 * (n * 1f / SAMPLE_RATE) * freq + phase);
+                //AudioValues[n] = sineSample;
+                var sample = (short) (sineSample * Int16.MaxValue);
+                var bytes = BitConverter.GetBytes(sample);
+                raw[n * 2] = bytes[0];
+                raw[n * 2 + 1] = bytes[1];
             }
-            return totalBytesRead;
+            //for (int n = 0; n < 2; n++)
+            //    bufferedWaveProvider.AddSamples(raw, 0, raw.Length);
+            //GenerateFunction();
+            var ms = new MemoryStream(raw);
+            rs = new RawSourceWaveStream(ms, waveFormat);
         }
+        */
     }
 }

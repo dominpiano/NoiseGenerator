@@ -69,7 +69,9 @@
             hScrollBar1.Maximum = 1000;
             hScrollBar1.Name = "hScrollBar1";
             hScrollBar1.Size = new Size(506, 30);
+            hScrollBar1.SmallChange = 2;
             hScrollBar1.TabIndex = 5;
+            hScrollBar1.ValueChanged += hScrollBar1_ValueChanged;
             // 
             // openFileDialog1
             // 
