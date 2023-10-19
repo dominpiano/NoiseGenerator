@@ -1,7 +1,5 @@
-﻿namespace NoiseGenerator
-{
-    partial class MainWindow
-    {
+﻿namespace NoiseGenerator {
+    partial class MainWindow {
         /// <summary>
         ///  Required designer variable.
         /// </summary>
@@ -11,10 +9,8 @@
         ///  Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing && (components != null))
-            {
+        protected override void Dispose(bool disposing) {
+            if (disposing && (components != null)) {
                 components.Dispose();
             }
             base.Dispose(disposing);
@@ -26,12 +22,12 @@
         ///  Required method for Designer support - do not modify
         ///  the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent()
-        {
+        private void InitializeComponent() {
             stopButton = new Button();
             playButton = new Button();
             formsPlot1 = new ScottPlot.FormsPlot();
             hScrollBar1 = new HScrollBar();
+            openFileDialog1 = new OpenFileDialog();
             SuspendLayout();
             // 
             // stopButton
@@ -74,20 +70,24 @@
             hScrollBar1.Name = "hScrollBar1";
             hScrollBar1.Size = new Size(506, 30);
             hScrollBar1.TabIndex = 5;
-            hScrollBar1.ValueChanged += hScrollBar1_ValueChanged;
+            // 
+            // openFileDialog1
+            // 
+            openFileDialog1.FileName = "openFileDialog1";
             // 
             // MainWindow
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(40, 41, 35);
+            BackColor = Color.FromArgb(  40,   41,   35);
             ClientSize = new Size(1264, 681);
             Controls.Add(hScrollBar1);
             Controls.Add(formsPlot1);
             Controls.Add(stopButton);
             Controls.Add(playButton);
             Name = "MainWindow";
-            Text = "Form1";
+            Text = "Noise Generator";
+            FormClosed += MainWindow_FormClosed;
             ResumeLayout(false);
         }
 
@@ -97,5 +97,6 @@
         private Button playButton;
         private ScottPlot.FormsPlot formsPlot1;
         private HScrollBar hScrollBar1;
+        private OpenFileDialog openFileDialog1;
     }
 }

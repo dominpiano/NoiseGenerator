@@ -16,4 +16,10 @@
     <PackageReference Include="ScottPlot.WinForms" Version="4.1.68" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="WaveOut.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
 </Project>
