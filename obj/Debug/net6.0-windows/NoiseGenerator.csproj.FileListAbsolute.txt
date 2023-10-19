@@ -23,3 +23,6 @@ C:\Users\Dominik Golemberski\source\repos\NoiseGenerator\obj\Debug\net6.0-window
 C:\Users\Dominik Golemberski\source\repos\NoiseGenerator\obj\Debug\net6.0-windows\NoiseGenerator.pdb
 C:\Users\Dominik Golemberski\source\repos\NoiseGenerator\obj\Debug\net6.0-windows\NoiseGenerator.genruntimeconfig.cache
 C:\Users\Dominik Golemberski\source\repos\NoiseGenerator\obj\Debug\net6.0-windows\ref\NoiseGenerator.dll
+C:\Users\Dominik Golemberski\source\repos\NoiseGenerator\bin\Debug\net6.0-windows\ScottPlot.dll
+C:\Users\Dominik Golemberski\source\repos\NoiseGenerator\bin\Debug\net6.0-windows\ScottPlot.WinForms.dll
+C:\Users\Dominik Golemberski\source\repos\NoiseGenerator\bin\Debug\net6.0-windows\FftSharp.dll

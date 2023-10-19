@@ -28,18 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
             stopButton = new Button();
             playButton = new Button();
-            timer1 = new System.Windows.Forms.Timer(components);
+            formsPlot1 = new ScottPlot.FormsPlot();
+            hScrollBar1 = new HScrollBar();
             SuspendLayout();
             // 
             // stopButton
             // 
             stopButton.Font = new Font("Simplex_IV25", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-            stopButton.Location = new Point(518, 78);
+            stopButton.Location = new Point(230, 50);
             stopButton.Name = "stopButton";
-            stopButton.Size = new Size(117, 87);
+            stopButton.Size = new Size(120, 80);
             stopButton.TabIndex = 3;
             stopButton.Text = "Stop";
             stopButton.UseVisualStyleBackColor = true;
@@ -48,25 +48,42 @@
             // playButton
             // 
             playButton.Font = new Font("Simplex_IV25", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-            playButton.Location = new Point(188, 78);
+            playButton.Location = new Point(50, 50);
             playButton.Name = "playButton";
-            playButton.Size = new Size(117, 87);
+            playButton.Size = new Size(120, 80);
             playButton.TabIndex = 2;
             playButton.Text = "Play";
             playButton.UseVisualStyleBackColor = true;
             playButton.Click += playButton_Click;
             // 
-            // timer1
+            // formsPlot1
             // 
-            timer1.Interval = 10;
-            timer1.Tick += timer1_Tick;
+            formsPlot1.BackColor = Color.White;
+            formsPlot1.Font = new Font("Simplex_IV25", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            formsPlot1.ForeColor = Color.White;
+            formsPlot1.Location = new Point(0, 266);
+            formsPlot1.Margin = new Padding(5, 4, 5, 4);
+            formsPlot1.Name = "formsPlot1";
+            formsPlot1.Size = new Size(1265, 415);
+            formsPlot1.TabIndex = 4;
+            // 
+            // hScrollBar1
+            // 
+            hScrollBar1.Location = new Point(50, 196);
+            hScrollBar1.Maximum = 1000;
+            hScrollBar1.Name = "hScrollBar1";
+            hScrollBar1.Size = new Size(506, 30);
+            hScrollBar1.TabIndex = 5;
+            hScrollBar1.ValueChanged += hScrollBar1_ValueChanged;
             // 
             // MainWindow
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(40, 41, 35);
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1264, 681);
+            Controls.Add(hScrollBar1);
+            Controls.Add(formsPlot1);
             Controls.Add(stopButton);
             Controls.Add(playButton);
             Name = "MainWindow";
@@ -78,6 +95,7 @@
 
         private Button stopButton;
         private Button playButton;
-        private System.Windows.Forms.Timer timer1;
+        private ScottPlot.FormsPlot formsPlot1;
+        private HScrollBar hScrollBar1;
     }
 }

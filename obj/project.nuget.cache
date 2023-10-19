@@ -1,11 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "GNOAMlsTSZn2rVnQWzIBaj7nfYtzyPMR6MlZak6kATWyjyQNp+OpdNGIUCRQoqa5cNocqH4DTYmIW5u3bNXafw==",
+  "dgSpecHash": "kwpnhIjXh9erPlxLcePlTCwr04/W7Z1WE6DFJBcxtMIsCmUMNhvtHzDB6NgPX0pmIQUTe75nix/ptqjeJ8dtfQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\Dominik Golemberski\\source\\repos\\NoiseGenerator\\NoiseGenerator.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Dominik Golemberski\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
+    "C:\\Users\\Dominik Golemberski\\.nuget\\packages\\fftsharp\\2.1.0\\fftsharp.2.1.0.nupkg.sha512",
+    "C:\\Users\\Dominik Golemberski\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.4\\microsoft.netcore.platforms.3.1.4.nupkg.sha512",
     "C:\\Users\\Dominik Golemberski\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
+    "C:\\Users\\Dominik Golemberski\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
     "C:\\Users\\Dominik Golemberski\\.nuget\\packages\\naudio\\2.2.1\\naudio.2.2.1.nupkg.sha512",
     "C:\\Users\\Dominik Golemberski\\.nuget\\packages\\naudio.asio\\2.2.1\\naudio.asio.2.2.1.nupkg.sha512",
     "C:\\Users\\Dominik Golemberski\\.nuget\\packages\\naudio.core\\2.2.1\\naudio.core.2.2.1.nupkg.sha512",
@@ -13,6 +15,10 @@
     "C:\\Users\\Dominik Golemberski\\.nuget\\packages\\naudio.wasapi\\2.2.1\\naudio.wasapi.2.2.1.nupkg.sha512",
     "C:\\Users\\Dominik Golemberski\\.nuget\\packages\\naudio.winforms\\2.2.1\\naudio.winforms.2.2.1.nupkg.sha512",
     "C:\\Users\\Dominik Golemberski\\.nuget\\packages\\naudio.winmm\\2.2.1\\naudio.winmm.2.2.1.nupkg.sha512",
+    "C:\\Users\\Dominik Golemberski\\.nuget\\packages\\scottplot\\4.1.68\\scottplot.4.1.68.nupkg.sha512",
+    "C:\\Users\\Dominik Golemberski\\.nuget\\packages\\scottplot.winforms\\4.1.68\\scottplot.winforms.4.1.68.nupkg.sha512",
+    "C:\\Users\\Dominik Golemberski\\.nuget\\packages\\system.drawing.common\\4.7.2\\system.drawing.common.4.7.2.nupkg.sha512",
+    "C:\\Users\\Dominik Golemberski\\.nuget\\packages\\system.numerics.vectors\\4.5.0\\system.numerics.vectors.4.5.0.nupkg.sha512",
     "C:\\Users\\Dominik Golemberski\\.nuget\\packages\\system.security.accesscontrol\\4.7.0\\system.security.accesscontrol.4.7.0.nupkg.sha512",
     "C:\\Users\\Dominik Golemberski\\.nuget\\packages\\system.security.principal.windows\\4.7.0\\system.security.principal.windows.4.7.0.nupkg.sha512"
   ],
