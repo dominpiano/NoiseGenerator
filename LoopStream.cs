@@ -13,16 +13,21 @@ namespace NoiseGenerator
     public class LoopStream : ISampleProvider
     {
         private readonly ISampleProvider source;
+        private int SAMPLE_RATE;
+        public int frequency = 200;
 
-        public MySampleProvider(ISampleProvider source)
+        public LoopStream(ISampleProvider source, int sampleRate)
         {
             this.source = source;
+            this.SAMPLE_RATE = sampleRate;
         }
 
         public int Read(float[] buffer, int offset, int count)
         {
             int samplesRead = source.Read(buffer, offset, count);
-            // TODO: examine and optionally change the contents of buffer
+
+            GenerateFunction(buffer, count);
+
             return samplesRead;
         }
 
@@ -31,31 +36,16 @@ namespace NoiseGenerator
             get { return source.WaveFormat; }
         }
 
-        /*
-        private void GenerateFunction()
+        
+        private float[] GenerateFunction(float[] samplesToModify, int count)
         {
-            //Generate function with samples
-            var raw = new byte[BUFFER_LENGTH * 2];
 
-            phase += 2 * Math.PI * freq / SAMPLE_RATE;
-            if (phase >= 2 * Math.PI)
-                phase -= 2 * Math.PI;
-            for (int n = 0; n < BUFFER_LENGTH; n++)
+            for (int n = 0; n < count; n++)
             {
-
-                var sineSample = Math.Sin(Math.PI * 2 * (n * 1f / SAMPLE_RATE) * freq + phase);
-                //AudioValues[n] = sineSample;
-                var sample = (short) (sineSample * Int16.MaxValue);
-                var bytes = BitConverter.GetBytes(sample);
-                raw[n * 2] = bytes[0];
-                raw[n * 2 + 1] = bytes[1];
+                samplesToModify[n] = (float)Math.Sin(Math.PI * 2 * (n * 1f / SAMPLE_RATE) * 100);
             }
-            //for (int n = 0; n < 2; n++)
-            //    bufferedWaveProvider.AddSamples(raw, 0, raw.Length);
-            //GenerateFunction();
-            var ms = new MemoryStream(raw);
-            rs = new RawSourceWaveStream(ms, waveFormat);
+            return samplesToModify;
         }
-        */
+        
     }
 }

@@ -54,7 +54,7 @@ namespace NoiseGenerator {
                 return;
             //bufferedWaveProvider = new BufferedWaveProvider(waveFormat);
             GenerateFunction();
-            loop = new LoopStream(rs, BUFFER_LENGTH);
+            loop = new LoopStream(rs.ToSampleProvider(), SAMPLE_RATE);
             waveOut = new WaveOut();
             waveOut.Init(loop);
             waveOut.Play();
