@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "HFEvjKmAr7hP2ZAUv0tUb+HX66GCKGSYjau52XVxOjq83m1pEMWSVuLyY4SygjxS53UmwWx7WOIzHcT22dskdg==",
+  "dgSpecHash": "kwpnhIjXh9erPlxLcePlTCwr04/W7Z1WE6DFJBcxtMIsCmUMNhvtHzDB6NgPX0pmIQUTe75nix/ptqjeJ8dtfQ==",
   "success": true,
-  "projectFilePath": "D:\\Dokumenty\\Projekty Github\\NoiseGenerator\\NoiseGenerator.csproj",
+  "projectFilePath": "C:\\Users\\Dominik Golemberski\\source\\repos\\NoiseGenerator\\NoiseGenerator.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Dominik Golemberski\\.nuget\\packages\\fftsharp\\2.1.0\\fftsharp.2.1.0.nupkg.sha512",
     "C:\\Users\\Dominik Golemberski\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.4\\microsoft.netcore.platforms.3.1.4.nupkg.sha512",

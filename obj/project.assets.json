@@ -768,11 +768,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Dokumenty\\Projekty Github\\NoiseGenerator\\NoiseGenerator.csproj",
+      "projectUniqueName": "C:\\Users\\Dominik Golemberski\\source\\repos\\NoiseGenerator\\NoiseGenerator.csproj",
       "projectName": "NoiseGenerator",
-      "projectPath": "D:\\Dokumenty\\Projekty Github\\NoiseGenerator\\NoiseGenerator.csproj",
+      "projectPath": "C:\\Users\\Dominik Golemberski\\source\\repos\\NoiseGenerator\\NoiseGenerator.csproj",
       "packagesPath": "C:\\Users\\Dominik Golemberski\\.nuget\\packages\\",
-      "outputPath": "D:\\Dokumenty\\Projekty Github\\NoiseGenerator\\obj\\",
+      "outputPath": "C:\\Users\\Dominik Golemberski\\source\\repos\\NoiseGenerator\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Dominik Golemberski\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -837,7 +837,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.103\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
       }
     }
   }

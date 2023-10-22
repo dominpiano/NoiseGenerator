@@ -13,11 +13,13 @@ namespace NoiseGenerator {
     public partial class MainWindow : Form {
 
         private const int SAMPLE_RATE = 48000;
-        private const int BUFFER_LENGTH = 6000;
+        private const int BUFFER_LENGTH = 48000;
 
         private WaveFormat waveFormat;
         private WaveOut waveOut;
         int freq = 200; //a
+
+        private RawSourceWaveStream rawSourceStream;
 
         private BufferedWaveProvider bufferedWaveProvider;
 
@@ -33,13 +35,16 @@ namespace NoiseGenerator {
             if (waveOut != null)
                 return;
 
-            timer1.Enabled = true;
-            bufferedWaveProvider = new BufferedWaveProvider(waveFormat);
-            bufferedWaveProvider.BufferLength = SAMPLE_RATE * 4;
-            //GenerateFunction();
+            //timer1.Enabled = true;
+            //bufferedWaveProvider = new BufferedWaveProvider(waveFormat);
+            //bufferedWaveProvider.BufferLength = SAMPLE_RATE * 4;
             //sampleManager = new AudioSampleManager(bufferedWaveProvider.ToSampleProvider(), SAMPLE_RATE);
+
+            GenerateFunction();
+            var audioLoop = new AudioLooper(rawSourceStream);
             waveOut = new WaveOut();
-            waveOut.Init(bufferedWaveProvider);
+            //waveOut.DesiredLatency = 200;
+            waveOut.Init(audioLoop);
             waveOut.Play();
         }
         private void stopButton_Click(object sender, EventArgs e) {
@@ -53,9 +58,11 @@ namespace NoiseGenerator {
 
         private void GenerateFunction() {
             //Generate function with samples
+            timer1.Enabled = false;
             var raw = new byte[BUFFER_LENGTH * 2];
+            
+
             /*
-            //var sampleNoise = createPinkNoise(SAMPLE_RATE);
             double[] sampleNoise = new double[BUFFER_LENGTH];
             double[] filterCoefficients = [0.10091023048542094, 0.1513653457281314, 0.1870978567577278, 0.2, 0.1870978567577278, 0.1513653457281314, 0.10091023048542094];
 
@@ -69,16 +76,23 @@ namespace NoiseGenerator {
 
 
             for (int n = 0; n < BUFFER_LENGTH; n++) {
-                var audioSample = Math.Sin(Math.PI * 2 * (n * 1f / SAMPLE_RATE) * freq);
-                //float audioSample = (float)new Random().NextDouble();
-                //AudioValues[n] = audioSample;
+                //var audioSample = Math.Sin(Math.PI * 2 * (n * 1f / SAMPLE_RATE) * freq);
+                var audioSample = (float)new Random().NextDouble();
+                //var audioSample = sampleNoise[n];
                 var sample = (short) (audioSample * Int16.MaxValue);
                 var bytes = BitConverter.GetBytes(sample);
                 raw[n * 2] = bytes[0];
                 raw[n * 2 + 1] = bytes[1];
             }
 
+            var ms = new MemoryStream(raw);
+            rawSourceStream = new RawSourceWaveStream(ms, waveFormat);
+            /*
+            if (bufferedWaveProvider.BufferedBytes > 0)
+                Debug.WriteLine("here");
             bufferedWaveProvider.AddSamples(raw, 0, raw.Length);
+            timer1.Enabled = true;
+            */
         }
 
         public static double[] ApplyFIRFilter(double[] signal, double[] filterCoefficients) {
@@ -100,6 +114,7 @@ namespace NoiseGenerator {
         }
 
         //Calkiem dobra funkcja tworzaca rozowy szum
+        //Ale zajebiœcie wolna
         /*
         public double[] createPinkNoise(long sampleCount, int quality = 10000, double lowestFrequency = 20, double highestFrequency = 20000, double volumeAdjust = 5.0)
         {
