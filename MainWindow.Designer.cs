@@ -23,82 +23,69 @@
         ///  the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            stopButton = new Button();
-            playButton = new Button();
-            formsPlot1 = new ScottPlot.FormsPlot();
-            hScrollBar1 = new HScrollBar();
-            openFileDialog1 = new OpenFileDialog();
-            SuspendLayout();
+            this.components = new System.ComponentModel.Container();
+            this.stopButton = new System.Windows.Forms.Button();
+            this.playButton = new System.Windows.Forms.Button();
+            this.hScrollBar1 = new System.Windows.Forms.HScrollBar();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.SuspendLayout();
             // 
             // stopButton
             // 
-            stopButton.Font = new Font("Simplex_IV25", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-            stopButton.Location = new Point(230, 50);
-            stopButton.Name = "stopButton";
-            stopButton.Size = new Size(120, 80);
-            stopButton.TabIndex = 3;
-            stopButton.Text = "Stop";
-            stopButton.UseVisualStyleBackColor = true;
-            stopButton.Click += stopButton_Click;
+            this.stopButton.Font = new System.Drawing.Font("Simplex_IV25", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.stopButton.Location = new System.Drawing.Point(230, 50);
+            this.stopButton.Name = "stopButton";
+            this.stopButton.Size = new System.Drawing.Size(120, 80);
+            this.stopButton.TabIndex = 3;
+            this.stopButton.Text = "Stop";
+            this.stopButton.UseVisualStyleBackColor = true;
+            this.stopButton.Click += new System.EventHandler(this.stopButton_Click);
             // 
             // playButton
             // 
-            playButton.Font = new Font("Simplex_IV25", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-            playButton.Location = new Point(50, 50);
-            playButton.Name = "playButton";
-            playButton.Size = new Size(120, 80);
-            playButton.TabIndex = 2;
-            playButton.Text = "Play";
-            playButton.UseVisualStyleBackColor = true;
-            playButton.Click += playButton_Click;
-            // 
-            // formsPlot1
-            // 
-            formsPlot1.BackColor = Color.White;
-            formsPlot1.Font = new Font("Simplex_IV25", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            formsPlot1.ForeColor = Color.White;
-            formsPlot1.Location = new Point(0, 266);
-            formsPlot1.Margin = new Padding(5, 4, 5, 4);
-            formsPlot1.Name = "formsPlot1";
-            formsPlot1.Size = new Size(1265, 415);
-            formsPlot1.TabIndex = 4;
+            this.playButton.Font = new System.Drawing.Font("Simplex_IV25", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.playButton.Location = new System.Drawing.Point(50, 50);
+            this.playButton.Name = "playButton";
+            this.playButton.Size = new System.Drawing.Size(120, 80);
+            this.playButton.TabIndex = 2;
+            this.playButton.Text = "Play";
+            this.playButton.UseVisualStyleBackColor = true;
+            this.playButton.Click += new System.EventHandler(this.playButton_Click);
             // 
             // hScrollBar1
             // 
-            hScrollBar1.Location = new Point(50, 196);
-            hScrollBar1.Maximum = 1000;
-            hScrollBar1.Name = "hScrollBar1";
-            hScrollBar1.Size = new Size(506, 30);
-            hScrollBar1.SmallChange = 2;
-            hScrollBar1.TabIndex = 5;
-            hScrollBar1.ValueChanged += hScrollBar1_ValueChanged;
+            this.hScrollBar1.Location = new System.Drawing.Point(50, 196);
+            this.hScrollBar1.Maximum = 1000;
+            this.hScrollBar1.Name = "hScrollBar1";
+            this.hScrollBar1.Size = new System.Drawing.Size(506, 30);
+            this.hScrollBar1.SmallChange = 2;
+            this.hScrollBar1.TabIndex = 5;
+            this.hScrollBar1.ValueChanged += new System.EventHandler(this.hScrollBar1_ValueChanged);
             // 
-            // openFileDialog1
+            // timer1
             // 
-            openFileDialog1.FileName = "openFileDialog1";
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // MainWindow
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(  40,   41,   35);
-            ClientSize = new Size(1264, 681);
-            Controls.Add(hScrollBar1);
-            Controls.Add(formsPlot1);
-            Controls.Add(stopButton);
-            Controls.Add(playButton);
-            Name = "MainWindow";
-            Text = "Noise Generator";
-            FormClosed += MainWindow_FormClosed;
-            ResumeLayout(false);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(41)))), ((int)(((byte)(35)))));
+            this.ClientSize = new System.Drawing.Size(1264, 681);
+            this.Controls.Add(this.hScrollBar1);
+            this.Controls.Add(this.stopButton);
+            this.Controls.Add(this.playButton);
+            this.Name = "MainWindow";
+            this.Text = "Noise Generator";
+            this.ResumeLayout(false);
+
         }
 
         #endregion
 
         private Button stopButton;
         private Button playButton;
-        private ScottPlot.FormsPlot formsPlot1;
         private HScrollBar hScrollBar1;
-        private OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.Timer timer1;
     }
 }

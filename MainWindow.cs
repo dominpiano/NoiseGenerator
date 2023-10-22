@@ -2,7 +2,10 @@ using FftSharp;
 using NAudio.Wave;
 using NAudio.Wave.SampleProviders;
 using System;
+using System.Data;
 using System.Diagnostics;
+using System.Reflection.Emit;
+using System.Runtime.Intrinsics.X86;
 using System.Text;
 using System.Windows.Forms;
 
@@ -10,65 +13,43 @@ namespace NoiseGenerator {
     public partial class MainWindow : Form {
 
         private const int SAMPLE_RATE = 48000;
-        private const int BUFFER_LENGTH = 24000;
+        private const int BUFFER_LENGTH = 6000;
 
         private WaveFormat waveFormat;
         private WaveOut waveOut;
-
-        private RawSourceWaveStream rs;
-        LoopStream loop;
-        int freq = 203; //a
-
-        readonly double[] AudioValues;
-        readonly double[] FftValues;
-
-        Thread updateBufferThread;
-        bool runThread = false;
+        int freq = 200; //a
 
         private BufferedWaveProvider bufferedWaveProvider;
 
         public MainWindow() {
             InitializeComponent();
 
-            /*
-            AudioValues = new double[BUFFER_LENGTH];
-            double[] paddedAudio = Pad.ZeroPad(AudioValues);
-            double[] fftMag = Transform.FFTmagnitude(paddedAudio);
-            FftValues = new double[fftMag.Length];
-            double fftPeriod = FFT.FrequencyResolution(fftMag.Length, SAMPLE_RATE);
-            formsPlot1.Plot.AddSignal(FftValues, 1.0 / fftPeriod);
-            formsPlot1.Plot.YLabel("Spectral Power");
-            formsPlot1.Plot.XLabel("Frequency (kHz)");
-            formsPlot1.Refresh();
-            */
-
-            //updateBufferThread = new Thread(UpdateBuffer);
-            //updateBufferThread.Start();
-
+            timer1.Interval = BUFFER_LENGTH*1000/SAMPLE_RATE;
             waveFormat = new WaveFormat(SAMPLE_RATE, 16, 1);
+            
         }
-
 
         private void playButton_Click(object sender, EventArgs e) {
             if (waveOut != null)
                 return;
-            //bufferedWaveProvider = new BufferedWaveProvider(waveFormat);
-            GenerateFunction();
-            loop = new LoopStream(rs.ToSampleProvider(), SAMPLE_RATE);
+
+            timer1.Enabled = true;
+            bufferedWaveProvider = new BufferedWaveProvider(waveFormat);
+            bufferedWaveProvider.BufferLength = SAMPLE_RATE * 4;
+            //GenerateFunction();
+            //sampleManager = new AudioSampleManager(bufferedWaveProvider.ToSampleProvider(), SAMPLE_RATE);
             waveOut = new WaveOut();
-            waveOut.Init(loop);
+            waveOut.Init(bufferedWaveProvider);
             waveOut.Play();
-            //runThread = true;
         }
         private void stopButton_Click(object sender, EventArgs e) {
-            //runThread = false;
+            timer1.Enabled = false;
             if (waveOut != null) {
                 waveOut.Stop();
                 waveOut.Dispose();
                 waveOut = null;
             }
         }
-        double phase;
 
         private void GenerateFunction() {
             //Generate function with samples
@@ -85,25 +66,19 @@ namespace NoiseGenerator {
 
             var hopefullyPinkNoise = ApplyFIRFilter(sampleNoise, filterCoefficients);
             */
-            phase += 2 * Math.PI * freq / SAMPLE_RATE;
-            if (phase >= 2 * Math.PI)
-                phase -= 2 * Math.PI;
 
 
             for (int n = 0; n < BUFFER_LENGTH; n++) {
-
-                var sineSample = Math.Sin(Math.PI * 2 * (n * 1f / SAMPLE_RATE) * freq + phase);
-                //AudioValues[n] = sineSample;
-                var sample = (short) (sineSample * Int16.MaxValue);
+                var audioSample = Math.Sin(Math.PI * 2 * (n * 1f / SAMPLE_RATE) * freq);
+                //float audioSample = (float)new Random().NextDouble();
+                //AudioValues[n] = audioSample;
+                var sample = (short) (audioSample * Int16.MaxValue);
                 var bytes = BitConverter.GetBytes(sample);
                 raw[n * 2] = bytes[0];
                 raw[n * 2 + 1] = bytes[1];
             }
-            //for (int n = 0; n < 2; n++)
-            //    bufferedWaveProvider.AddSamples(raw, 0, raw.Length);
-            //GenerateFunction();
-            var ms = new MemoryStream(raw);
-            rs = new RawSourceWaveStream(ms, waveFormat);
+
+            bufferedWaveProvider.AddSamples(raw, 0, raw.Length);
         }
 
         public static double[] ApplyFIRFilter(double[] signal, double[] filterCoefficients) {
@@ -147,21 +122,15 @@ namespace NoiseGenerator {
         */
 
         private void hScrollBar1_ValueChanged(object sender, EventArgs e) {
-            loop.frequency = hScrollBar1.Value + 200;
-        }
-
-        //Method to update buffer if it's available
-        private void UpdateBuffer() {
-            while (true) {
-                if (runThread) {
-                    //while(bufferedWaveProvider)
-                    //GenerateFunction();
-                }
-            }
+            freq = hScrollBar1.Value + 200;
         }
 
         private void MainWindow_FormClosed(object sender, FormClosedEventArgs e) {
             Environment.Exit(Environment.ExitCode);
+        }
+
+        private void timer1_Tick(object sender, EventArgs e) {
+            GenerateFunction();
         }
     }
 }
